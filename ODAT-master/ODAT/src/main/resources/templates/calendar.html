@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+</head>
+<body>
+<div th:switch="${tasks}">
+    <h2 th:case="null">No tasks yet!</h2>
+    <div th:case="*">
+        <h2>Tasks</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title of task</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Folders</th>
+                <th>Delete task</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.title}"></td>
+                <td th:text="${task.startTime}"></td>
+                <td th:text="${task.endTime}"></td>
+                <c:forEach items="${task.folders}" var="tfolder">
+                    <td th:text="${task.folders.get(0).foldername}"></td>
+                </c:forEach>
+                <td><a th:href="@{/deletetask/{id}(id=${task.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addtask">Add a new task</a></p>
+</div>
+
+<div th:switch="${goals}">
+    <h2 th:case="null">No goals yet!</h2>
+    <div th:case="*">
+        <h2>Goals</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Description of goal</th>
+                <th>Delete goal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="goal : ${goals}">
+                <td th:text="${goal.description}"></td>
+                <td><a th:href="@{/deletegoal/{id}(id=${goal.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addgoal">Add a new goal</a></p>
+</div>
+
+<div th:switch="${tfolders}">
+    <h2 th:case="null">No folders yet!</h2>
+    <div th:case="*">
+        <h2>Folders</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title of folder</th>
+                <th>Delete folder</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tfolder : ${tfolders}">
+                <td th:text="${tfolder.foldername}"></td>
+                <td><a th:href="@{/deletetfolder/{id}(id=${tfolder.id})}">Delete</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addfolder">Add a new folder</a></p>
+</div>
+
+</body>
+</html>

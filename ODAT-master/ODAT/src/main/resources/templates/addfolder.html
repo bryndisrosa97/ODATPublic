@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Folder</title>
+</head>
+<body>
+<form action="#" th:action="@{/addfolder}" th:object="${tfolder}" method="post">
+    <label for="foldername">Title of folder</label>
+    <input type="text" th:field="*{foldername}" id="foldername" placeholder="Folder">
+    <span th:if="${#fields.hasErrors('foldername')}" th:errors="*{foldername}"></span>
+    <input type="submit" value="Add Folder">
+</form>
+
+</body>
+</html>

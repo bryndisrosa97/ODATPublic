@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/addtask}" th:object="${task}" method="post">
+    <label for="title">Title of task</label>
+    <input type="text" th:field="*{title}" id="title" placeholder="Title">
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+    <label for="starttime">Start time</label>
+    <input type="text" th:field="*{startTime}" id="startTime" placeholder="Start time">
+    <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span>
+    <label for="endtime">End time</label>
+    <input type="text" th:field="*{endTime}" id="endTime" placeholder="End time">
+    <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span>
+
+    <label for="tfolder">Folder</label>
+
+    <select th:field="*{folders}" id="tfolders">
+        <!-- <option value=""> -- </option> -->
+        <option th:each="tfolder : ${tfolders}" th:value="${tfolder.id}" th:utext="${tfolder.foldername}"/>
+    </select>
+
+    <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span>
+
+    <input type="submit" value="Add Task">
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goal</title>
+</head>
+<body>
+<form action="#" th:action="@{/addgoal}" th:object="${goal}" method="post">
+    <label for="description">Description of goal</label>
+    <input type="text" th:field="*{description}" id="description" placeholder="Goal">
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    <input type="submit" value="Add Goal">
+</form>
+
+</body>
+</html>
